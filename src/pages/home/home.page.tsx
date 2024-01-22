@@ -14,7 +14,9 @@ import wave from "@/assets/wave.svg";
 const HomePage = () => {
   document.title = "Home";
   const [products, setProducts] = useState<Product[]>([]);
-  const [cart, setCart] = useState<ProductInCart[]>([]);
+  const [cart, setCart] = useState<ProductInCart[]>(
+    localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : []
+  );
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>("");
 
@@ -50,6 +52,9 @@ const HomePage = () => {
       setCart([...newCart]);
     }
   };
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
   useEffect(() => {
     _axios
       .get("/products")
