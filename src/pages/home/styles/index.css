@@ -1,0 +1,8 @@
+.wave-container {
+  height: calc(100vh - 80px);
+}
+
+body {
+  margin: 0;
+  font-family: "Rubik", sans-serif;
+}
